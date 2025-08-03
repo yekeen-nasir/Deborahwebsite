@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <h1 class="title">🎉 Happy Birthday Dad!</h1>
+            <button id="voiceBtn" class="icon-btn" title="Play voice note">🎤</button>
+        </div>
+        <p class="subtitle">Choose one of the buttons below or wait for a special surprise...</p>
+
+        <div class="btn-grid">
+            <button id="jokeBtn" class="btn">🎭 Tell me a Joke</button>
+            <button id="riddleBtn" class="btn">🎁 Give me a Riddle</button>
+            <button id="messageBtn" class="btn">💌 Birthday Message</button>
+            <button id="specialBtn" class="btn hidden">💖 Special Message</button>
+        </div>
+
+        <div id="outputBox"></div>
+
+        <!-- Photo Carousel -->
+        <div id="carousel" class="carousel hidden">
+            <img id="carouselImg" src="{{ url_for('static', filename='images/photo1.jpg') }}" alt="Family moment" />
+        </div>
+        <h1 class="title">Happy Birthday!</h1>
+        <p class="subtitle">Click the button below to reveal your surprise 🎁</p>
+        <button id="revealBtn" class="btn">Reveal 🎉</button>
+        <div id="revealBox" class="reveal-box"></div>
+    </div>
+
+    <!-- Voice note -->
+    <audio id="voiceNote" src="{{ url_for('static', filename='audio/happy_birthday.mp3') }}"></audio>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Dim Overlay -->
+    <div id="overlay" class="overlay hidden"></div>
+
+    <!-- Special Message Modal -->
+    <div id="specialModal" class="modal hidden">
+        <button id="closeModal" class="close-btn">✖</button>
+        <img src="{{ url_for('static', filename='images/daughter.jpg') }}" alt="Your Daughter" class="modal-img"/>
+        <div id="specialText" class="modal-text"></div>
+        <p class="from">— From: <strong>Your Daughter 💖</strong></p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

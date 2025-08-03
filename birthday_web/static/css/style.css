@@ -1,0 +1,382 @@
+/* ----------------------------------------------------------------------------
+   Global Styles & Theme Colors
+ ---------------------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --primary: #FFD700;            /* Soft Gold */
+  --secondary: #FF6B6B;          /* Warm Red */
+  --cream: #FFF5E1;              /* Cream */
+  --accent-pink: #FADADD;        /* Light Pink */
+  --accent-blue: #B3E5FC;        /* Sky Blue */
+  --text-dark: #333333;          /* Dark Gray */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-dark);
+}
+
+body {
+  background: linear-gradient(135deg, var(--accent-pink) 0%, var(--primary) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* ----------------------------------------------------------------------------
+   Top Bar
+----------------------------------------------------------------------------*/
+.top-bar{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:1rem;
+}
+.icon-btn{
+  font-size:1.5rem;
+  background:none;
+  border:none;
+  cursor:pointer;
+  transition: transform .2s;
+}
+.icon-btn:hover{transform:scale(1.2);} 
+
+/* ----------------------------------------------------------------------------
+   Layout Containers
+ ---------------------------------------------------------------------------*/
+.container {
+  background: rgba(255,255,255,0.85);
+  border-radius: 24px;
+  padding: 2.5rem 2rem 3rem;
+  max-width: 650px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* ----------------------------------------------------------------------------
+   Title & Subtitle
+ ---------------------------------------------------------------------------*/
+h1.title {
+  font-family: 'Pacifico', cursive;
+  font-size: 3rem;
+  color: var(--secondary);
+  text-shadow: 2px 2px rgba(255,255,255,0.6);
+  animation: bounceIn 1s ease-out forwards;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); opacity: 1; }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+p.subtitle {
+  margin: 0.8rem auto 2rem;
+  font-size: 1.1rem;
+}
+
+/* ----------------------------------------------------------------------------
+   Buttons
+ ---------------------------------------------------------------------------*/
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+button.btn {
+  background: var(--secondary);
+  color: #fff;
+  border: none;
+  padding: 0.9rem 1.2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s, background 0.3s;
+}
+button.btn:hover {
+  box-shadow: 0 8px 16px rgba(255,107,107,0.4), 0 0 12px var(--secondary);
+
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 16px rgba(255,107,107,0.4);
+}
+button.btn:active {
+  transform: translateY(0);
+}
+
+/* Hide element util */
+.hidden{display:none !important;}
+.hidden { display:none !important; }
+
+/* ----------------------------------------------------------------------------
+   Output Box
+ ---------------------------------------------------------------------------*/
+#outputBox {
+  animation: pulse 6s infinite;
+
+  min-height: 120px;
+  border: 2px dashed var(--secondary);
+  border-radius: 16px;
+  padding: 1.5rem 1rem;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+  color: var(--text-dark);
+  overflow: hidden;
+  position: relative;
+}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* Typewriter caret */
+#outputBox.typewriter::after {
+  content: '';
+  width: 2px;
+  height: 1.1em;
+  background: var(--text-dark);
+  position: absolute;
+  right: 1rem;
+  animation: blink 0.8s infinite steps(1);
+}
+@keyframes blink { 0%,100% {opacity:0;} 50% {opacity:1;} }
+
+/* ----------------------------------------------------------------------------
+   Confetti Canvas
+----------------------------------------------------------------------------*/
+#confettiCanvas{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:5;
+}
+
+/* ----------------------------------------------------------------------------
+   Carousel
+----------------------------------------------------------------------------*/
+.carousel{
+  margin-top:1.5rem;
+  width:100%;
+  overflow:hidden;
+  border-radius:20px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.15);
+}
+.carousel img{
+  width:100%;
+  display:block;
+  transition: opacity .6s ease;
+}
+
+/* ----------------------------------------------------------------------------
+   Overlay & Modal
+----------------------------------------------------------------------------*/
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(2px);
+  z-index: 10;
+}
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  background: var(--cream);
+  border-radius: 20px;
+  padding: 2rem 1.5rem 2.5rem;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  z-index: 20;
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+.modal.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  cursor: pointer;
+  color: var(--secondary);
+}
+.modal-img{
+  width:120px;
+  height:120px;
+  object-fit:cover;
+  border-radius:50%;
+  margin-bottom:1rem;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+.modal-text{
+  font-size:1.05rem;
+  margin-bottom:1.2rem;
+}
+.from{font-size:0.9rem;color:var(--text-dark);} 
+
+/* Pulsing background for output box */
+@keyframes pulse {
+  0%,100%{background:var(--cream);} 
+  50%{background:var(--accent-blue);} 
+}
+
+/* ----------------------------------------------------------------------------
+   Responsive
+ ---------------------------------------------------------------------------*/
+@media(max-width:600px){
+  h1.title{font-size:2rem;}
+  .btn-grid{grid-template-columns:1fr;gap:0.75rem;}
+  button.btn{font-size:0.9rem;width:100%;}
+  .container{padding:1.5rem 1rem;}
+  .modal{width:95%;}
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@300;400;600&display=swap');
+
+:root {
+  --primary: #ff6b81;
+  --secondary: #ffbe0b;
+  --bg-dark: rgba(0,0,0,0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,body {
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #ffd1dc 0%, #ffe5f0 100%);
+  overflow-x: hidden;
+}
+
+.container {
+  text-align: center;
+  background: white;
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+  position: relative;
+  max-width: 600px;
+  width: 90%;
+}
+
+h1.title {
+  font-family: 'Pacifico', cursive;
+  font-size: 3rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+p.subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+  font-weight: 600;
+}
+.btn:hover {
+  background: var(--secondary);
+  transform: translateY(-3px);
+}
+
+/* Reveal Box */
+.reveal-box {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 2px dashed var(--primary);
+  border-radius: 12px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: rgba(255,255,255,0.8);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(20px);
+}
+
+.reveal-box.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+/* Balloon animations */
+.balloon{
+  position:absolute;
+  bottom:-150px;
+  width:60px;
+  height:80px;
+  background:var(--secondary);
+  border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+  animation: float 8s ease-in-out infinite;
+  opacity:0.8;
+}
+.balloon:before{
+  content:"";
+  position:absolute;
+  bottom:-10px;
+  left:50%;
+  width:2px;
+  height:10px;
+  background:#aaa;
+}
+@keyframes float{
+  0%{transform:translateX(-30vw) translateY(0);} 
+  50%{transform:translateX(30vw) translateY(-90vh);} 
+  100%{transform:translateX(-30vw) translateY(0);} 
+}
+
+/* Responsive */
+@media (max-width:600px){
+  h1.title{font-size:2.2rem;}
+  .container{padding:2rem 1.5rem;}
+}
